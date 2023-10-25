@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DataContext } from "../Contexts/Data";
 
 const Search = () => {
@@ -15,7 +15,6 @@ const Search = () => {
         type="submit"
         className="px-3 py-2 bg-green-500 border border-green-500 hover:bg-green-600 hover:border-green-600 rounded-md"
         onClick={() => {
-          console.log(search);
           setDataFunc(1);
         }}
       >

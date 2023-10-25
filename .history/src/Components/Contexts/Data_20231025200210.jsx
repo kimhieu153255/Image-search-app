@@ -19,7 +19,7 @@ const DataProvider = (props) => {
           };
         });
         if (page === 1) {
-          setData(temp);
+          setData([]);
           setPage(1);
         } else {
           setData((prev) => [...prev, ...temp]);

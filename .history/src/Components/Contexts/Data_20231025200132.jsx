@@ -7,7 +7,7 @@ const DataProvider = (props) => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const setDataFunc = async (page) => {
+  const setDataFunc = async (search, page) => {
     try {
       const res = await AxiosInstance.get(`&query=${search}&page=${page}`);
       if (res) {
@@ -19,12 +19,9 @@ const DataProvider = (props) => {
           };
         });
         if (page === 1) {
-          setData(temp);
-          setPage(1);
-        } else {
-          setData((prev) => [...prev, ...temp]);
-          setPage(page + 1);
-        }
+          setData([]);
+        } else setData((prev) => [...prev, ...temp]);
+        setPage(page + 1);
       }
     } catch (err) {
       console.log(err);
