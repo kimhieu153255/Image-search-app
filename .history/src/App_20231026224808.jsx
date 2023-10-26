@@ -1,24 +1,32 @@
 import { useContext, useEffect } from "react";
+import Loadmore from "./Components/Button/Loadmore";
 import CardList from "./Components/Card/CardList";
 import Search from "./Components/Search/Search";
 import { DataContext } from "./Components/Contexts/Data";
 
 function App() {
   const isLoading = useContext(DataContext).isLoading;
-  const { setDataFunc } = useContext(DataContext);
+  const { page, setDataFunc } = useContext(DataContext);
 
   useEffect(() => {
     function handleScroll() {
       const scrollY = window.scrollY || window.pageYOffset;
       const windowHeight = window.innerHeight;
-      const viewHeight = document.body.scrollHeight;
-      if (scrollY + windowHeight >= viewHeight) setDataFunc((page) => page + 1);
+      const documentHeight = document.body.scrollHeight;
+
+      if (scrollY + windowHeight >= documentHeight) {
+        setDataFunc(page + 1);
+      }
     }
+
+    // Attach the scroll event listener when the component mounts.
     window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts.
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [setDataFunc]);
+  }, []);
 
   return (
     <div className="w-full relative">
@@ -32,6 +40,7 @@ function App() {
             </div>
           </div>
         )}
+        {!isLoading && <Loadmore></Loadmore>}
       </div>
     </div>
   );

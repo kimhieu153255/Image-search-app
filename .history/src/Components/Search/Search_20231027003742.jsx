@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { DataContext } from "../Contexts/Data";
 
 const Search = () => {
-  const { setDataFunc, setSearch } = useContext(DataContext);
+  const { setDataFunc, setSearch, search } = useContext(DataContext);
   return (
     <div className="flex gap-3">
       <input

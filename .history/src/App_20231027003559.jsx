@@ -11,8 +11,11 @@ function App() {
     function handleScroll() {
       const scrollY = window.scrollY || window.pageYOffset;
       const windowHeight = window.innerHeight;
-      const viewHeight = document.body.scrollHeight;
-      if (scrollY + windowHeight >= viewHeight) setDataFunc((page) => page + 1);
+      const documentHeight = document.body.scrollHeight;
+
+      if (scrollY + windowHeight >= documentHeight) {
+        setDataFunc((page) => page + 1);
+      }
     }
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -32,6 +35,7 @@ function App() {
             </div>
           </div>
         )}
+        {/* {!isLoading && <Loadmore></Loadmore>} */}
       </div>
     </div>
   );
